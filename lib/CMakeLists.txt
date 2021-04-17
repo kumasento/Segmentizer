@@ -1,0 +1,1 @@
+add_llvm_library(ExtractCodeSegment MODULE ExtractCodeSegment.cc PLUGIN_TOOL clang)
