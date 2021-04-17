@@ -52,3 +52,29 @@ mkdir build
 cd build
 cmake .. -DCMAKE_C_COMPILER=clang-12 -DCMAKE_CXX_COMPILER=clang++-12 -DCMAKE_BUILD_TYPE=DEBUG
 ```
+
+## Run
+
+```
+cd build
+make && clang++-12 -cc1 -load ./lib/ExtractCodeSegment.so -plugin extract-code-segment  ../test/ExtractCodeSegment/add.cc
+```
+
+Outputs:
+
+```
+Handling start_segment ...
+Handling end_segment ...
+Handling start_segment ...
+Handling end_segment ...
+../test/ExtractCodeSegment/add.cc
+#pragma start_segment
+  for (int i = 0; i < 10; i++) {
+  }
+#pragma end_segment
+../test/ExtractCodeSegment/add.cc
+#pragma start_segment
+  while (true) {
+  }
+#pragma end_segment
+```
